@@ -3,14 +3,14 @@ import { useState, useEffect, useRef } from "react";
 
 type Message = {
     id: number;
-    sender: "user" | "assistant"; // AIに置き換える
+    sender: "user" | "assistant"; 
     text: string;
 }
 function App() {
     const [text, setText] = useState("");
     const [messages, setMessages] = useState<Message[]>([]);
     const [isTyping, setIsTyping] = useState(false);
-    const messagesEndRef = useRef<HTMLDivElement | null>(null); // ✅ 最下部への参照
+    const messagesEndRef = useRef<HTMLDivElement | null>(null); 
 
     const addMessage = (sender: "user" | "assistant", text: string) =>{
         if (text.trim() === "") return;
@@ -40,7 +40,7 @@ function App() {
             console.log(messages);
         } catch (err) {
             console.error("APIエラー", err);
-            addMessage("assistant", "エラーが発生しました ❌");
+            addMessage("assistant", "Something went wrong.");
         }
     }
 
@@ -75,7 +75,7 @@ function App() {
                 <textarea
                 value={text}
                 onChange={(e)=> setText(e.target.value)}
-                placeholder="メッセージを入力してください。"
+                placeholder="Type your message here..."
                 onKeyDown={(e)=>{
                     if (e.key =="Enter" && e.shiftKey){
                         e.preventDefault();
@@ -83,7 +83,7 @@ function App() {
                     }
                 }}
                 />
-                <button onClick={handleSend} >送信</button>
+                <button onClick={handleSend} >Send</button>
             </div>
         </div>
     )
